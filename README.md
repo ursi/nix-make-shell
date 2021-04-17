@@ -4,7 +4,7 @@
 It currently has:
 
 - Bash completion
-- Alias expansion in `shellHook` turned off by default
+- Alias expansion in `setup` (`shellHook`) turned off by default
 - A more intuitive API for its purpose
 
 ## Documentation
@@ -19,12 +19,12 @@ and returns the `make-shell` function.
 `make-shell` takes the following arguments:
 ```
 { packages ? []
-, shellHook ? ""
+, setup ? ""
 , expand-aliases ? false
 }
 ```
 - `packages`: A list of packages who executables will be added to your `PATH` and whose Bash completions will be loaded.
-- `shellHook`: A script to execute when entering the Nix shell.
-- `expand-aliases`: Whether or not aliases will be expanded during evaluation of `shellHook`. The default is `false`, as it makes the `shellHook` more likely to execute the same across systems.
+- `setup`: A string of bash which will be executed when entering the shell.
+- `expand-aliases`: Whether or not aliases will be expanded during evaluation of `setup`. The default is `false`, as it makes `setup` more likely to execute the same across systems.
 
 and returns a derivation to be used by `nix develop` or `nix-shell`.

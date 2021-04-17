@@ -25,7 +25,7 @@
       }'';
   in
   { packages ? []
-  , shellHook ? ""
+  , setup ? ""
   , expand-aliases ? false
   , ...
   }@args:
@@ -52,11 +52,11 @@
                }
            }
 
-           ${shellHook}
+           ${setup}
 
            ${if !expand-aliases then "shopt -s expand_aliases" else ""}
            '';
      }
      // (if args?meta then { inherit (args) meta; } else {})
-     // { passthru = b.removeAttrs args [ "meta" "packages" "shellHook" ]; }
+     // { passthru = b.removeAttrs args [ "meta" "packages" "setup" ]; }
     )
