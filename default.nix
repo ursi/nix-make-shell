@@ -18,11 +18,11 @@
       ''
       export ${env-var}=${
       if b.length packages != 0 then
-        b.concatStringsSep "" (b.map (pkg: "${pkg}/${subpath}:") packages)
+        b.concatStringsSep ":" (b.map (pkg: "${pkg}/${subpath}") packages)
+        + "\${${env-var}:+:\$${env-var}}"
       else
-        ""
-      }''${${env-var}:+''$${env-var}}
-      '';
+        "\$${env-var}"
+      }'';
   in
   { packages ? []
   , shellHook ? ""
