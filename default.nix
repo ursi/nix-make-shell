@@ -1,6 +1,6 @@
 { pkgs, system }:
   let
-    b = builtins; p = pkgs;
+    b = builtins; l = p.lib; p = pkgs;
 
     devshell =
       b.fetchGit
@@ -23,8 +23,13 @@
       else
         "\$${env-var}"
       }'';
+
+    write-set = set: f: b.concatStringsSep "\n" (l.mapAttrsToList f set);
   in
   { packages ? []
+  , aliases ? {}
+  , functions ? {}
+  , subshell-functions ? {}
   , setup ? ""
   , expand-aliases ? false
   , ...
@@ -50,6 +55,28 @@
                  inherit packages;
                  subpath = "share";
                }
+           }
+
+           ${write-set aliases (n: v: "alias ${n}=${l.escapeShellArg v}") }
+
+           ${write-set functions
+               (n: v:
+                  ''
+                  ${n}() {
+                    ${v}
+                  }
+                  ''
+               )
+           }
+
+           ${write-set subshell-functions
+               (n: v:
+                  ''
+                  ${n}() (
+                    ${v}
+                  )
+                  ''
+               )
            }
 
            ${setup}
