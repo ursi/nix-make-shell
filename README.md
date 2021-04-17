@@ -29,7 +29,7 @@ and returns the `make-shell` function.
 , expand-aliases ? false
 }
 ```
-- `packages`: A list of packages who executables will be added to your `PATH` and whose Bash completions will be loaded.
+- `packages`: A list of packages whose executables will be added to your `PATH` and whose Bash completions will be loaded.
 - `aliases`: A set of aliases which will be available inside the shell.
   ```
   aliases.hello = "echo hello!";
