@@ -10,6 +10,8 @@ It currently has:
   - `shellHook` -> `setup`
   - Declare aliases and functions in Nix for easier parsing of the created environment.
 
+This project has numbered branches which you can use in your flake URLs, the number will be bumped up whenever there is a breaking change, so you should aways be safe to upgrade if you don't change that number.
+
 ## Documentation
 
 ### default.nix
