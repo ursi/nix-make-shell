@@ -11,7 +11,9 @@ It currently has:
   - Declare aliases and functions in Nix for easier parsing of the created environment.
 
 ## Documentation
+
 ### default.nix
+
 `default.nix` contains a function that takes the following arguments:
 ```
 { pkgs, system }
@@ -19,6 +21,7 @@ It currently has:
 and returns the `make-shell` function.
 
 ### make-shell
+
 `make-shell` takes the following arguments:
 ```
 { packages ? []
