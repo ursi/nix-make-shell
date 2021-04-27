@@ -1,9 +1,10 @@
+with builtins;
 { pkgs, system }:
   let
-    b = builtins; l = p.lib; p = pkgs;
+    l = p.lib; p = pkgs;
 
     devshell =
-      b.fetchGit
+      fetchGit
         { url = "https://github.com/numtide/devshell.git";
           rev = "709fe4d04a9101c9d224ad83f73416dce71baf21";
         };
@@ -17,14 +18,14 @@
     make-path = { env-var, packages, subpath ? "" }:
       ''
       export ${env-var}=${
-      if b.length packages != 0 then
-        b.concatStringsSep ":" (b.map (pkg: "${pkg}/${subpath}") packages)
+      if length packages != 0 then
+        concatStringsSep ":" (map (pkg: "${pkg}/${subpath}") packages)
         + "\${${env-var}:+:\$${env-var}}"
       else
         "\$${env-var}"
       }'';
 
-    write-set = set: f: b.concatStringsSep "\n" (l.mapAttrsToList f set);
+    write-set = set: f: concatStringsSep "\n" (l.mapAttrsToList f set);
   in
   { packages ? []
   , aliases ? {}
@@ -85,5 +86,5 @@
            '';
      }
      // (if args?meta then { inherit (args) meta; } else {})
-     // { passthru = b.removeAttrs args [ "meta" "packages" "setup" ]; }
+     // { passthru = removeAttrs args [ "meta" "packages" "setup" ]; }
     )
