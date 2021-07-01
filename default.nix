@@ -29,6 +29,7 @@ with builtins;
   in
   { packages ? []
   , aliases ? {}
+  , env ? {}
   , functions ? {}
   , subshell-functions ? {}
   , setup ? ""
@@ -60,6 +61,9 @@ with builtins;
 
            # create aliases
            ${write-set aliases (n: v: "alias ${n}=${l.escapeShellArg v}")}
+
+           # export environment variables
+           ${write-set env (n: v: "export ${n}=${l.escapeShellArg v}")}
 
            # create functions
            ${write-set functions

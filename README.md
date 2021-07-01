@@ -28,6 +28,7 @@ and returns the `make-shell` function.
 ```
 { packages ? []
 , aliases ? {}
+, env ? {}
 , functions ? {}
 , subshell-functions ? {}
 , setup ? ""
@@ -38,6 +39,10 @@ and returns the `make-shell` function.
 - `aliases`: A set of aliases which will be available inside the shell.
   ```
   aliases.hello = "echo hello!";
+  ```
+- `env`: A set of environment variables.
+  ```
+  env.EDITOR = "nvim"
   ```
 - `functions`: A set of functions that will be available inside the shell, created with [{}](https://www.gnu.org/software/bash/manual/bash.html#Command-Grouping).
   ```
