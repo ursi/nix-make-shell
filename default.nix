@@ -58,8 +58,10 @@ with builtins;
                }
            }
 
-           ${write-set aliases (n: v: "alias ${n}=${l.escapeShellArg v}") }
+           # create aliases
+           ${write-set aliases (n: v: "alias ${n}=${l.escapeShellArg v}")}
 
+           # create functions
            ${write-set functions
                (n: v:
                   ''
@@ -70,6 +72,7 @@ with builtins;
                )
            }
 
+           # create subshell functions
            ${write-set subshell-functions
                (n: v:
                   ''
@@ -80,6 +83,7 @@ with builtins;
                )
            }
 
+           # run setup
            ${setup}
 
            ${if !expand-aliases then "shopt -s expand_aliases" else ""}
