@@ -46,7 +46,7 @@ and returns the `make-shell` function.
   ```
 - `functions`: A set of functions that will be available inside the shell, created with [{}](https://www.gnu.org/software/bash/manual/bash.html#Command-Grouping).
   ```
-  functions.echo2 = "echo $@";
+  functions.echo2 = ''echo "$@"'';
   ```
 - `subshell-functions`: A set of functions that will be available inside the shell, created with [()](https://www.gnu.org/software/bash/manual/bash.html#Command-Grouping).
   ```
