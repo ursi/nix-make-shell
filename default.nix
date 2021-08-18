@@ -10,10 +10,9 @@ with builtins;
         };
 
     mkNakedShell =
-      (import
-         (devshell + /nix/mkNakedShell.nix)
-         { inherit (p) bashInteractive coreutils system writeTextFile; }
-      );
+      import
+        (devshell + /nix/mkNakedShell.nix)
+        { inherit (p) bashInteractive coreutils system writeTextFile; };
 
     make-path = { env-var, packages, subpath ? "" }:
       ''
