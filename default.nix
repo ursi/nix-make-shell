@@ -93,5 +93,5 @@ with builtins;
            '';
      }
      // (if args?meta then { inherit (args) meta; } else {})
-     // { passthru = removeAttrs args [ "meta" "packages" "setup" ]; }
+     // { passthru = args; }
     )
